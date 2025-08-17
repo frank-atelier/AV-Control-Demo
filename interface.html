@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Athena Keke's - AV Control Interface</title>
+    <link rel="stylesheet" href="interface.css">
+</head>
+<body>
+    <div class="av-interface">
+        <!-- 3D Isometric View Container (Top 3/5) -->
+        <div class="view-3d-container">
+            <div class="view-3d" id="view3D">
+                <!-- Base room layer -->
+                <div class="room-layer base-layer" id="roomBase"></div>
+                
+                <!-- TV illumination layers (initially hidden) -->
+                <div class="room-layer tv-layer" id="tv1Layer" data-tv="1"></div>
+                <div class="room-layer tv-layer" id="tv2Layer" data-tv="2"></div>
+                <div class="room-layer tv-layer" id="tv3Layer" data-tv="3"></div>
+                <div class="room-layer tv-layer" id="tv4Layer" data-tv="4"></div>
+                <div class="room-layer tv-layer" id="tv5Layer" data-tv="5"></div>
+                <div class="room-layer tv-layer" id="tv6Layer" data-tv="6"></div>
+                
+                <!-- Projector illumination layer -->
+                <div class="room-layer projector-layer" id="projectorLayer" data-device="projector"></div>
+                
+                <!-- SVG Overlay Layer for Touch Zones -->
+                <div class="svg-overlay-layer">
+                    <svg class="display-outlines" viewBox="0 0 750 750" preserveAspectRatio="xMidYMid meet">
+                        <!-- TV 1 Touch Zone -->
+                        <g class="tv-touch-group" data-display="tv1">
+                            <polygon class="tv-touch-zone" data-display="tv1" 
+                                     points="545,149 594,162 594,192 545,179" 
+                                     fill="transparent" stroke="transparent" stroke-width="2"/>
+                        </g>
+                        
+                        <!-- TV 2 Touch Zone -->
+                        <g class="tv-touch-group" data-display="tv2">
+                            <polygon class="tv-touch-zone" data-display="tv2" 
+                                     points="477,132 526,144 526,174 477,161" 
+                                     fill="transparent" stroke="transparent" stroke-width="2"/>
+                        </g>
+                        
+                        <!-- TV 3 Touch Zone -->
+                        <g class="tv-touch-group" data-display="tv3">
+                            <polygon class="tv-touch-zone" data-display="tv3" 
+                                     points="462,440 510,452 510,482 462,469" 
+                                     fill="transparent" stroke="transparent" stroke-width="2"/>
+                        </g>
+                        
+                        <!-- TV 4 Touch Zone -->
+                        <g class="tv-touch-group" data-display="tv4">
+                            <polygon class="tv-touch-zone" data-display="tv4" 
+                                     points="543,461 592,473 592,503 543,490" 
+                                     fill="transparent" stroke="transparent" stroke-width="2"/>
+                        </g>
+                        
+                        <!-- TV 5 Touch Zone -->
+                        <g class="tv-touch-group" data-display="tv5">
+                            <polygon class="tv-touch-zone" data-display="tv5" 
+                                     points="295,418 344,430 344,459 295,447" 
+                                     fill="transparent" stroke="transparent" stroke-width="2"/>
+                        </g>
+                        
+                        <!-- TV 6 Touch Zone -->
+                        <g class="tv-touch-group" data-display="tv6">
+                            <polygon class="tv-touch-zone" data-display="tv6" 
+                                     points="229,75 278,87 278,117 229,104" 
+                                     fill="transparent" stroke="transparent" stroke-width="2"/>
+                        </g>
+                        
+                        <!-- Projector Touch Zone -->
+                        <g class="tv-touch-group" data-display="projector">
+                            <polygon class="tv-touch-zone" data-display="projector" 
+                                     points="131,433 179,396 179,444 131,480" 
+                                     fill="transparent" stroke="transparent" stroke-width="2"/>
+                        </g>
+                    </svg>
+                </div>
+                
+                <!-- Status overlay -->
+                <div class="status-overlay">
+                    <div class="system-status">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">System Online</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Area (Bottom 2/5) -->
+        <div class="controls-area">
+            <!-- Source Selection -->
+            <div class="control-section">
+                <h3>Video Sources (Drag to TVs)</h3>
+                <div class="source-grid">
+                    <div class="source-item" draggable="true" data-source="cable1">
+                        <span class="source-icon">📺</span>
+                        <span class="source-label">Cable 1</span>
+                        <div class="drag-indicator">↕</div>
+                    </div>
+                    <div class="source-item" draggable="true" data-source="cable2">
+                        <span class="source-icon">📺</span>
+                        <span class="source-label">Cable 2</span>
+                        <div class="drag-indicator">↕</div>
+                    </div>
+                    <div class="source-item" draggable="true" data-source="appletv">
+                        <span class="source-icon">🍎</span>
+                        <span class="source-label">Apple TV</span>
+                        <div class="drag-indicator">↕</div>
+                    </div>
+                    <div class="source-item" draggable="true" data-source="googletv">
+                        <span class="source-icon">📱</span>
+                        <span class="source-label">Google TV</span>
+                        <div class="drag-indicator">↕</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Audio Control -->
+            <div class="control-section">
+                <h3>Audio Control</h3>
+                <div class="audio-controls">
+                    <div class="audio-source-section">
+                        <label>Audio Source Selection</label>
+                        <div class="audio-source-buttons">
+                            <button class="audio-source-btn" data-audio-source="main-music">
+                                <span class="source-icon">🎵</span>
+                                <span class="source-label">Main Music</span>
+                                <span class="toggle-indicator off"></span>
+                            </button>
+                            <button class="audio-source-btn" data-audio-source="bar-input">
+                                <span class="source-icon">🍺</span>
+                                <span class="source-label">Bar Input</span>
+                                <span class="toggle-indicator off"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="zone-item">
+                        <label>Master Volume</label>
+                        <input type="range" min="0" max="100" value="75" class="volume-slider master-volume" data-zone="master">
+                        <span class="volume-value">75%</span>
+                    </div>
+                    <div class="zone-item">
+                        <label>Bar Volume</label>
+                        <input type="range" min="0" max="100" value="75" class="volume-slider" data-zone="bar">
+                        <span class="volume-value">75%</span>
+                    </div>
+                    <div class="zone-item">
+                        <label>Dining Volume</label>
+                        <input type="range" min="0" max="100" value="60" class="volume-slider" data-zone="dining">
+                        <span class="volume-value">60%</span>
+                    </div>
+                    <div class="commercial-break-section">
+                        <button class="commercial-break-btn" id="commercialBreakBtn">
+                            <span class="break-icon">⏸️</span>
+                            <span class="break-label">COMMERCIAL BREAK</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Presets -->
+            <div class="control-section">
+                <h3>Quick Presets</h3>
+                <div class="preset-buttons">
+                    <button class="preset-btn" id="allOn">All On</button>
+                    <button class="preset-btn" id="allOff">All Off</button>
+                    <button class="preset-btn" id="sportsMode">Sports</button>
+                    <button class="preset-btn" id="partyMode">Party</button>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+    <!-- Custom Display Control Container -->
+    <div class="display-control-container" id="displayControlContainer">
+        <div class="control-header">
+            <h3 id="controlTitle">Display Control</h3>
+            <button class="close-btn" id="closeControlBtn">×</button>
+        </div>
+        <div class="control-content" id="controlContent">
+            <!-- Content will be dynamically populated -->
+        </div>
+    </div>
+    
+    <!-- Compact Power Control Tab -->
+    <div id="powerControlTab" class="power-control-tab">
+        <div class="tab-header">
+            <span id="tabTitle">TV 1</span>
+            <button id="closeTabBtn" class="tab-close-btn">&times;</button>
+        </div>
+        <button id="powerToggleBtn" class="compact-power-btn">
+            <span class="power-icon">⏻</span>
+            <span class="power-label">Power</span>
+        </button>
+    </div>
+
+    <script src="interface.js"></script>
+</body>
+</html> 

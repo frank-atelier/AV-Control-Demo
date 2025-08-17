@@ -1,0 +1,1322 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%, 
+        #0a0a1a 25%, 
+        #0a0a0a 50%, 
+        #0a0a1a 75%, 
+        #0a0a0a 100%
+    );
+    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* Subtle Global Orbital Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 10%, rgba(0, 150, 255, 0.02) 0%, transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(100, 200, 255, 0.015) 0%, transparent 30%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Main Interface Container */
+.av-interface {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 3D View Container (Top 3/5) */
+.view-3d-container {
+    height: 60vh; /* 3/5 of screen height */
+    width: 100%;
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%, 
+        #1a1a2e 25%, 
+        #16213e 50%, 
+        #0f3460 75%, 
+        #0a0a0a 100%
+    );
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid #333;
+}
+
+/* Futuristic Orbital Gradient Background */
+.view-3d-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 150, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(100, 200, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 255, 200, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 90% 20%, rgba(150, 100, 255, 0.05) 0%, transparent 50%);
+    z-index: 0;
+    animation: orbitalDrift 20s ease-in-out infinite;
+}
+
+/* Orbital Grid Lines */
+.view-3d-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, rgba(0, 150, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0, 150, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 0;
+    animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes orbitalDrift {
+    0%, 100% {
+        transform: translateX(0) translateY(0) scale(1);
+    }
+    25% {
+        transform: translateX(-10px) translateY(-5px) scale(1.02);
+    }
+    50% {
+        transform: translateX(5px) translateY(-10px) scale(0.98);
+    }
+    75% {
+        transform: translateX(-5px) translateY(5px) scale(1.01);
+    }
+}
+
+@keyframes gridPulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Futuristic Scan Line Effect */
+.view-3d::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 150, 255, 0.02) 50%,
+        transparent 100%
+    );
+    background-size: 100% 4px;
+    animation: scanLine 3s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes scanLine {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.view-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Room Layer System */
+.room-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Base Room Layer */
+.base-layer {
+    background-image: url('assets/room_base.png');
+    opacity: 1;
+    z-index: 1;
+}
+
+/* TV Illumination Layers */
+.tv-layer {
+    opacity: 0;
+    z-index: 2;
+    mix-blend-mode: screen; /* Creates the glow effect */
+}
+
+/* TV Layer Background Images */
+#tv1Layer {
+    background-image: url('assets/tv_1_on.png');
+}
+
+#tv2Layer {
+    background-image: url('assets/tv_2_on.png');
+}
+
+#tv3Layer {
+    background-image: url('assets/tv_3_on.png');
+}
+
+#tv4Layer {
+    background-image: url('assets/tv_4_on.png');
+}
+
+#tv5Layer {
+    background-image: url('assets/tv_5_on.png');
+}
+
+#tv6Layer {
+    background-image: url('assets/tv_6_on.png');
+}
+
+/* Projector Layer */
+.projector-layer {
+    opacity: 0;
+    z-index: 2;
+    mix-blend-mode: screen; /* Creates the glow effect */
+}
+
+#projectorLayer {
+    background-image: url('assets/projector_on.png');
+}
+
+
+
+/* SVG Overlay Layer */
+.svg-overlay-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100; /* Higher z-index to ensure it's on top */
+    pointer-events: none;
+}
+
+.display-outlines {
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+}
+
+.tv-touch-group {
+    cursor: pointer;
+}
+
+.tv-touch-zone {
+    fill: transparent;
+    stroke: transparent;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    cursor: pointer;
+}
+
+/* Hover effect with animated dotted line */
+.tv-touch-zone:hover {
+    stroke: rgba(0, 255, 136, 0.8);
+    stroke-width: 2;
+    stroke-dasharray: 8,8;
+    animation: rotateDots 2s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.4));
+}
+
+/* Selection effect with rotating dots */
+.tv-touch-zone.selected {
+    stroke: #00ff88;
+    stroke-width: 2;
+    stroke-dasharray: 8,8;
+    animation: rotateDots 1s linear infinite;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.6));
+}
+
+/* Optional: Subtle outline for development visibility */
+.tv-touch-zone {
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 0.5;
+}
+
+/* Touch feedback animation */
+.tv-touch-zone:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Subtle pulse for off TVs to indicate they're interactive */
+.tv-touch-zone {
+    animation: subtlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Drop zone styling */
+.tv-touch-zone.drop-zone {
+    stroke: #00ff88;
+    stroke-width: 3;
+    stroke-dasharray: 10,5;
+    animation: dashMove 1s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.8));
+}
+
+.tv-touch-zone.drop-zone-hover {
+    stroke: #ff6b6b;
+    stroke-width: 4;
+    stroke-dasharray: 15,5;
+    animation: dashMove 0.5s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.8));
+}
+
+/* Enhanced drop zone feedback */
+.tv-touch-zone.drop-zone-hover::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid #ff6b6b;
+    border-radius: inherit;
+    animation: pulse 1s infinite;
+    pointer-events: none;
+}
+
+
+
+@keyframes dashMove {
+    to {
+        stroke-dashoffset: -15;
+    }
+}
+
+@keyframes rotateDots {
+    to {
+        stroke-dashoffset: -16;
+    }
+}
+
+/* Status Overlay */
+.status-overlay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    animation: pulse 2s infinite;
+}
+
+.status-dot.online {
+    background: #00ff88;
+}
+
+.status-dot.warning {
+    background: #ffa502;
+}
+
+.status-dot.error {
+    background: #ff4757;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.status-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Controls Area (Bottom 2/5) */
+.controls-area {
+    height: 40vh; /* 2/5 of screen height */
+    width: 100%;
+    background: linear-gradient(180deg, 
+        #0a0a0a 0%, 
+        #0f0f1a 50%, 
+        #0a0a0a 100%
+    );
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+/* Futuristic Controls Background */
+.controls-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 150, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(100, 200, 255, 0.03) 0%, transparent 40%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Control Sections */
+.control-section {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.03) 0%, 
+        rgba(0, 150, 255, 0.02) 50%, 
+        rgba(255, 255, 255, 0.03) 100%
+    );
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(0, 150, 255, 0.2);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Futuristic Glow Effect */
+.control-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(0, 150, 255, 0.1) 50%, 
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.control-section:hover::before {
+    opacity: 1;
+}
+
+.control-section h3 {
+    color: #feca57;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(254, 202, 87, 0.3);
+    padding-bottom: 8px;
+}
+
+/* Video Sources - Draggable Items */
+.source-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.source-item {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid #0f3460;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: grab;
+    transition: all 0.3s ease;
+    position: relative;
+    user-select: none;
+}
+
+.source-item:hover {
+    border-color: #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    transform: translateY(-2px);
+}
+
+.source-item:active {
+    cursor: grabbing;
+    transform: translateY(0);
+}
+
+.source-item.dragging {
+    opacity: 0.7;
+    transform: scale(1.05);
+    z-index: 1000;
+}
+
+.source-item.active {
+    border-color: #00ff88;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.5);
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+}
+
+.drag-indicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+    color: #00ff88;
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-3px); }
+    60% { transform: translateY(-2px); }
+}
+
+/* Notification System */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid #0f3460;
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    z-index: 10000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    border-color: #00ff88;
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+}
+
+.notification.error {
+    border-color: #ff6b6b;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.notification-message {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.source-btn {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(0, 150, 255, 0.05) 50%, 
+        rgba(255, 255, 255, 0.08) 100%
+    );
+    border: 1px solid rgba(0, 150, 255, 0.3);
+    border-radius: 10px;
+    padding: 20px 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    backdrop-filter: blur(5px);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Futuristic Button Glow */
+.source-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(0, 150, 255, 0.2) 50%, 
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.source-btn:hover::before {
+    opacity: 1;
+}
+
+.source-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.source-btn.active {
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+}
+
+.source-icon {
+    font-size: 24px;
+}
+
+.source-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* TV Controls */
+.tv-controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.tv-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.tv-item label {
+    font-weight: 500;
+    min-width: 50px;
+}
+
+.tv-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.tv-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.tv-status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.tv-status.off {
+    background: rgba(255, 71, 87, 0.2);
+    color: #ff4757;
+}
+
+.tv-status.on {
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+}
+
+/* Projector Controls */
+.projector-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.projector-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.projector-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.projector-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.projector-status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.projector-status.off {
+    background: rgba(255, 71, 87, 0.2);
+    color: #ff4757;
+}
+
+.projector-status.on {
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+}
+
+
+
+/* Audio Controls */
+.audio-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.audio-source-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.audio-source-section label {
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.audio-source-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.audio-source-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.audio-source-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.audio-source-btn.active {
+    background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+    border-color: #00ff88;
+    color: #1a1a2e;
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
+}
+
+.audio-source-btn .source-icon {
+    font-size: 24px;
+}
+
+.audio-source-btn .source-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.audio-source-btn .toggle-indicator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ff6b6b;
+    transition: all 0.3s ease;
+}
+
+.audio-source-btn.active .toggle-indicator {
+    background: #1a1a2e;
+}
+
+.zone-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.zone-item label {
+    font-weight: 500;
+    min-width: 80px;
+}
+
+.volume-slider {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #feca57;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #feca57;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.volume-value {
+    min-width: 45px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+    color: #feca57;
+}
+
+/* Commercial Break Button */
+.commercial-break-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.commercial-break-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    border: none;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.commercial-break-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.commercial-break-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+}
+
+.commercial-break-btn:hover::before {
+    opacity: 1;
+}
+
+.commercial-break-btn:active {
+    transform: scale(0.95);
+}
+
+.break-icon {
+    font-size: 24px;
+}
+
+    .break-label {
+        font-size: 10px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.2;
+        max-width: 80px;
+    }
+    
+    .commercial-break-btn {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .break-icon {
+        font-size: 20px;
+    }
+    
+    .break-label {
+        font-size: 9px;
+        max-width: 70px;
+    }
+
+/* Preset Buttons */
+.preset-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.preset-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 15px 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.preset-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.preset-btn:active {
+    transform: translateY(0);
+}
+
+#sportsMode, #partyMode {
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    border-color: transparent;
+}
+
+/* Custom Display Control Container */
+.display-control-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90vw;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.display-control-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.control-header h3 {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.control-content {
+    padding: 25px;
+}
+
+/* TV Control Content Styles */
+.tv-control-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.control-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.control-row label {
+    color: white;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+.control-row .control-value {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+/* Compact Power Control Tab */
+.power-control-tab {
+    position: absolute;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid #0f3460;
+    border-radius: 15px;
+    padding: 0;
+    color: white;
+    z-index: 2000;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    min-width: 140px;
+    max-width: 180px;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.power-control-tab.show {
+    display: block;
+    transform: scale(1);
+    opacity: 1;
+    animation: tabSlideIn 0.3s ease-out;
+}
+
+@keyframes tabSlideIn {
+    from {
+        transform: scale(0.8) translateX(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateX(0);
+        opacity: 1;
+    }
+}
+
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 13px 13px 0 0;
+}
+
+.tab-header span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #00ff88;
+}
+
+.tab-close-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.tab-close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.compact-power-btn {
+    background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+    border: none;
+    border-radius: 0 0 13px 13px;
+    padding: 15px 20px;
+    color: #1a1a2e;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 60px;
+}
+
+.compact-power-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+}
+
+.compact-power-btn:active {
+    transform: translateY(0);
+}
+
+.compact-power-btn.power-off {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+}
+
+.compact-power-btn.power-off:hover {
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.power-icon {
+    font-size: 18px;
+}
+
+.power-label {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Responsive Design for iPhone */
+@media screen and (max-width: 768px) {
+    .controls-area {
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .power-control-tab {
+        min-width: 120px;
+        max-width: 150px;
+    }
+    
+    .tab-header {
+        padding: 10px 12px;
+    }
+    
+    .tab-header span {
+        font-size: 12px;
+    }
+    
+    .compact-power-btn {
+        padding: 12px 15px;
+        min-height: 50px;
+    }
+    
+    .power-icon {
+        font-size: 16px;
+    }
+    
+    .power-label {
+        font-size: 11px;
+    }
+    
+    .control-section {
+        padding: 15px;
+    }
+    
+    .source-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .source-btn {
+        padding: 15px 10px;
+    }
+    
+    .tv-controls {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .preset-buttons {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .zone-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .zone-item label {
+        min-width: auto;
+    }
+    
+    .display-control-container {
+        width: 95vw;
+        max-width: 400px;
+    }
+}
+
+/* iPad Portrait Optimization */
+@media screen and (min-width: 768px) and (max-width: 2048px) and (orientation: portrait) {
+    .view-3d-container {
+        height: 60vh;
+    }
+    
+    .controls-area {
+        height: 40vh;
+    }
+    
+    .source-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .tv-controls {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Landscape Mode Adjustments */
+@media screen and (orientation: landscape) {
+    .view-3d-container {
+        height: 70vh;
+    }
+    
+    .controls-area {
+        height: 30vh;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .control-section {
+        flex: 1;
+        min-width: 300px;
+    }
+} 
